@@ -6,7 +6,6 @@ public class movement : MonoBehaviour
 {
     public float speed;
     private SpriteRenderer sR;
-    private bool IsPaused = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,21 +28,5 @@ public class movement : MonoBehaviour
             sR.flipX = false;
         }
 
-        // PAUSE
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            IsPaused = !IsPaused;
-            if (IsPaused)
-            {
-                Time.timeScale = 0;
-            }
-            else
-            {
-                Time.timeScale = 1;
-            }
-            
-            
-        }
     }
 }
