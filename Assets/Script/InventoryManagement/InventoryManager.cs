@@ -46,7 +46,8 @@ public class InventoryManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I) && isInventoryOpen)
         {
-            UseItem(InvUI.GetComponent<OnScreenInventory>().posInv);
+            if(inventory.Count > InvUI.GetComponent<OnScreenInventory>().posInv)
+                UseItem(InvUI.GetComponent<OnScreenInventory>().posInv);
         }
         else if (Input.GetKeyDown(KeyCode.I) && interactableOpen)
         {
