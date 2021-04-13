@@ -34,8 +34,8 @@ public class PlayerStatsManager : MonoBehaviour
         foodSlider.maxValue = maxValue;
         waterSlider.maxValue = maxValue;
         UpdateSlider();
-        DecreaseValue(1);
-        DecreaseValue(2);
+        StartCoroutine(FoodDecrease());
+        StartCoroutine(WaterDecrease());
     }
 
     private void Update()

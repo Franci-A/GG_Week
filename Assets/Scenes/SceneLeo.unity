@@ -230,7 +230,7 @@ MonoBehaviour:
   bullet: {fileID: 2391571716683733143, guid: 2a282e4008cd7224cbcc4d98be85e6fa, type: 3}
   muzzle: {fileID: 1957972844}
   reloadTime: 1
-  bulletSpeed: 1
+  bulletSpeed: 10
 --- !u!212 &2066816125
 SpriteRenderer:
   m_ObjectHideFlags: 0
