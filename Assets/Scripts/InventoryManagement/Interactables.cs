@@ -16,9 +16,6 @@ public class Interactables : MonoBehaviour
 
     private void Start()
     {
-        items = new List<Items>();
-        items.Add(new Items(ItemType.Drink, 1));
-        items.Add(new Items(ItemType.Food, 1));
         UpdateSelected();
     }
 

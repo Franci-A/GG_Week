@@ -12,7 +12,7 @@ public enum ItemType
 }
 
 [Serializable]
-public class Items : ScriptableObject
+public class Items 
 {
     public ItemType type;
     public int amount;

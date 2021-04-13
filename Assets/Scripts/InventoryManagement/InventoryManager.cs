@@ -13,10 +13,12 @@ public class InventoryManager : MonoBehaviour
     private bool interactableInRange;
     private Interactables interactableObject;
     private bool interactableOpen;
+    private PlayerStatsManager statsManager;
 
     void Start()
     {
         inventory = new List<Items>();
+        statsManager = this.GetComponent<PlayerStatsManager>();
     }
 
     void Update()
@@ -80,14 +82,17 @@ public class InventoryManager : MonoBehaviour
         switch (inventory[i].type)
         {
             case ItemType.Heal:
+                statsManager.AddValue(0, inventory[i].amount);
                 inventory.RemoveAt(i);
                 Debug.Log("<3 <3");
                 break;
             case ItemType.Food:
+                statsManager.AddValue(1, inventory[i].amount);
                 inventory.RemoveAt(i);
                 Debug.Log("Miam miam");
                 break;
             case ItemType.Drink:
+                statsManager.AddValue(2, inventory[i].amount);
                 inventory.RemoveAt(i);
                 Debug.Log("Glu glu");
                 break;
