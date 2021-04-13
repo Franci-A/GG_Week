@@ -18,7 +18,7 @@ MonoBehaviour:
     m_CategoryList:
     - m_Name: Food
       m_Hash: 1946846921
-      m_Sprite: {fileID: 7482667652216324306, guid: 53260e0093329244d831d5a56107fdc5, type: 3}
+      m_Sprite: {fileID: -2413806693520163455, guid: 4779e5df657bf0e4ca3a5418c8ce1a47, type: 3}
     - m_Name: Drink
       m_Hash: -864063531
       m_Sprite: {fileID: -9095717837082945937, guid: 911af32858f8871489c232b14999cd5b, type: 3}
@@ -27,7 +27,7 @@ MonoBehaviour:
       m_Sprite: {fileID: 7482667652216324306, guid: 53260e0093329244d831d5a56107fdc5, type: 3}
     - m_Name: Bullets
       m_Hash: -194617324
-      m_Sprite: {fileID: 7482667652216324306, guid: 53260e0093329244d831d5a56107fdc5, type: 3}
+      m_Sprite: {fileID: 3625043607559282579, guid: 9cefabdaaaa7aa6418bedd59bef82c46, type: 3}
     - m_Name: Empty
-      m_Hash: -2047257743
-      m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+      m_Hash: -1459219776
+      m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}

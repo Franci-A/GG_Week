@@ -10,6 +10,9 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private int invSize;
     [SerializeField] private GameObject InvUI;
     private bool isInventoryOpen;
+    private bool interactableInRange;
+    private Interactables interactableObject;
+    private bool interactableOpen;
 
     void Start()
     {
@@ -18,8 +21,13 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.E)) //Open / close inventory
+        if(Input.GetKeyDown(KeyCode.E) && interactableOpen && interactableInRange)
+        {
+            interactableOpen = false;
+            interactableObject.CloseUI();
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.E)) //Open / close inventory
         {
             if (!isInventoryOpen)
             {
@@ -35,22 +43,27 @@ public class InventoryManager : MonoBehaviour
             
         }
 
-        
-        if (Input.GetKeyDown(KeyCode.I) && !isInventoryOpen)
-        {
-            Debug.Log("pickup");
-            Items test = new Items(ItemType.Drink, 1);
-            PickUp(test);
-            test = new Items(ItemType.Bullets, 1);
-            PickUp(test);
-            test = new Items(ItemType.Food, 1);
-            PickUp(test);
-            test = new Items(ItemType.Heal, 1);
-            PickUp(test);
-        }else if (Input.GetKeyDown(KeyCode.I) && isInventoryOpen)
+
+        if (Input.GetKeyDown(KeyCode.I) && isInventoryOpen)
         {
             UseItem(InvUI.GetComponent<OnScreenInventory>().posInv);
         }
+        else if (Input.GetKeyDown(KeyCode.I) && interactableOpen)
+        {
+            if (inventory.Count < invSize && interactableObject.posInv < interactableObject.items.Count)
+            {
+                inventory.Add(interactableObject.items[interactableObject.posInv]);
+                interactableObject.RemoveItem(interactableObject.posInv);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.I) && interactableInRange)
+        {
+            interactableObject.OpenUI();
+            interactableObject.UpdateUI();
+            interactableOpen = true;
+
+        }
+        
     }
 
     public void PickUp(Items items)
@@ -66,19 +79,19 @@ public class InventoryManager : MonoBehaviour
         switch (inventory[i].type)
         {
             case ItemType.Heal:
-                inventory.Remove(inventory[i]);
+                inventory.RemoveAt(i);
                 Debug.Log("<3 <3");
                 break;
             case ItemType.Food:
-                inventory.Remove(inventory[i]);
+                inventory.RemoveAt(i);
                 Debug.Log("Miam miam");
                 break;
             case ItemType.Drink:
-                inventory.Remove(inventory[i]);
+                inventory.RemoveAt(i);
                 Debug.Log("Glu glu");
                 break;
             case ItemType.Bullets:
-                inventory.Remove(inventory[i]);
+                inventory.RemoveAt(i);
                 Debug.Log("pew pew");
                 break;
             default:
@@ -87,5 +100,26 @@ public class InventoryManager : MonoBehaviour
         }
         InvUI.GetComponent<OnScreenInventory>().UpdateUI();
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.CompareTag("Interactable"))
+        {
+            interactableObject = collision.gameObject.GetComponent<Interactables>();
+            interactableInRange = true;
+            
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Interactable"))
+        {
+            interactableInRange = false;
+            interactableObject = null;
+            Debug.Log(interactableInRange);
+        }
     }
 }
