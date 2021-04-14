@@ -8,7 +8,7 @@ public class PlayerStatsManager : MonoBehaviour
     public int maxValue = 100;
 
     [Header("Health")]
-    [SerializeField] private Slider healthSlider;
+    [SerializeField] private GameObject[] healthUI;
     public int currentHealth;
     [SerializeField] private int healthDropInterval;
     [SerializeField] private int foodHealthImpact;
@@ -37,7 +37,6 @@ public class PlayerStatsManager : MonoBehaviour
         currentFood = maxValue;
         currentWater = maxValue;
 
-        healthSlider.maxValue = maxValue;
         foodSlider.maxValue = maxValue;
         waterSlider.maxValue = maxValue;
         UpdateSlider();
@@ -45,12 +44,6 @@ public class PlayerStatsManager : MonoBehaviour
         StartCoroutine(WaterDecrease());
         StartCoroutine(HealthDecrease());
     }
-
-    private void Update()
-    {
-        
-    }
-
     public void AddValue(int HFW, int amount) // health = 0 , food = 1, water = 2
     {
         switch (HFW)
@@ -160,7 +153,15 @@ public class PlayerStatsManager : MonoBehaviour
 
     private void UpdateSlider()
     {
-        healthSlider.value = currentHealth;
+        Debug.Log((int)currentHealth / 10);
+        for (int i = 0; i < 10 ; i++)
+        {
+            healthUI[i].SetActive(false);
+        }
+        for (int i = 0; i < (int)currentHealth/10 ; i++)
+        {
+            healthUI[i].SetActive(true);
+        }
         foodSlider.value = currentFood;
         waterSlider.value = currentWater;
     }
