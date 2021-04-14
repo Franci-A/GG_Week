@@ -58,11 +58,11 @@ public class InventoryManager : MonoBehaviour
         {
             if (inventory.Count < invSize && interactableObject.posInv < interactableObject.items.Count)
             {
-                if (interactableObject.items[interactableObject.posInv].type != ItemType.Bullets) {
+                if (interactableObject.items[interactableObject.posInv].type != ItemType.Bullets && interactableObject.items[interactableObject.posInv] != null) {
                     inventory.Add(interactableObject.items[interactableObject.posInv]);
                     interactableObject.RemoveItem(interactableObject.posInv);
                 }
-                else if (playerTir.CurrentBullet < playerTir.MaxBullet)
+                else if (playerTir.CurrentBullet < playerTir.MaxBullet && interactableObject.items[interactableObject.posInv] != null)
                 {
                     playerTir.CurrentBullet += interactableObject.items[interactableObject.posInv].amount;
                     if (playerTir.CurrentBullet > playerTir.MaxBullet)
@@ -122,7 +122,6 @@ public class InventoryManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.CompareTag("Interactable"))
         {
             interactableObject = collision.gameObject.GetComponent<Interactables>();

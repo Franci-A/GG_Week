@@ -153,7 +153,6 @@ public class PlayerStatsManager : MonoBehaviour
 
     private void UpdateSlider()
     {
-        Debug.Log((int)currentHealth / 10);
         for (int i = 0; i < 10 ; i++)
         {
             healthUI[i].SetActive(false);

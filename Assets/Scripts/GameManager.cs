@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private bool IsPaused = false;
+    private bool GameOver = false;
 
     // Update is called once per frame
     void Update()
@@ -36,7 +37,11 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDied()
     {
-        Time.timeScale = 0;
-        SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+        if (!GameOver)
+        {
+            GameOver = true;
+            Time.timeScale = 0;
+            SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+        }
     }
 }

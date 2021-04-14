@@ -12,21 +12,20 @@ public class Interactables : MonoBehaviour
     public int posInv;
     private bool isUpdatingPos = false;
     public List<Items> items;
+    private List<Items> stockedItems;
 
 
     private void Start()
     {
         UpdateSelected();
+        stockedItems = items;
+        Debug.Log(stockedItems);
     }
 
     public void RemoveItem(int i)
     {
         items.RemoveAt(i);
-        if (items.Count == 0)
-        {
-            Destroy(this.gameObject);
-        }else
-            UpdateUI();
+        UpdateUI();
     }
 
     private void Update()
@@ -98,5 +97,13 @@ public class Interactables : MonoBehaviour
     public void CloseUI()
     {
         UI.SetActive(false);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("EndZone")){
+            items.Add(stockedItems[0]);
+            items.Add(stockedItems[1]);
+        }
     }
 }
