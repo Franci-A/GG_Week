@@ -8,23 +8,13 @@ public class GameManager : MonoBehaviour
     private bool IsPaused = false;
     private bool GameOver = false;
 
-    // Update is called once per frame
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            IsPaused = !IsPaused;
-            if (IsPaused)
-            {
-                Time.timeScale = 0;
-                SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
-            }
-            else
-            {
-                Time.timeScale = 1;
-                SceneManager.UnloadSceneAsync("PauseMenu");
-            }
 
+            PauseToggle();
 
         }
     }
@@ -42,6 +32,23 @@ public class GameManager : MonoBehaviour
             GameOver = true;
             Time.timeScale = 0;
             SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+        }
+    }
+
+    public void PauseToggle()
+    {
+       
+        if (!IsPaused)
+        {
+            IsPaused = true;
+            Time.timeScale = 0;
+            SceneManager.LoadScene("Pause", LoadSceneMode.Additive);
+        }
+        else
+        {
+            IsPaused = false;
+            Time.timeScale = 1;
+            SceneManager.UnloadSceneAsync("Pause");
         }
     }
 }
