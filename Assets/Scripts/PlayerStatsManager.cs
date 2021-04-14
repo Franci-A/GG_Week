@@ -10,6 +10,9 @@ public class PlayerStatsManager : MonoBehaviour
     [Header("Health")]
     [SerializeField] private Slider healthSlider;
     public int currentHealth;
+    [SerializeField] private int healthDropRate;
+    [SerializeField] private int foodHealthImpact;
+    [SerializeField] private int waterHealthImpact;
 
     [Header("Food")]
     [SerializeField] private Slider foodSlider;
@@ -22,6 +25,10 @@ public class PlayerStatsManager : MonoBehaviour
     public int currentWater;
     [SerializeField] private int waterDropRate = 5;
     [SerializeField] private float waterDropInterval = 5;
+
+    private bool noWater;
+    private bool noFood;
+
 
 
     private void Start()
@@ -36,6 +43,7 @@ public class PlayerStatsManager : MonoBehaviour
         UpdateSlider();
         StartCoroutine(FoodDecrease());
         StartCoroutine(WaterDecrease());
+        StartCoroutine(HealthDecrease());
     }
 
     private void Update()
@@ -72,23 +80,33 @@ public class PlayerStatsManager : MonoBehaviour
         {
             case 0:
                 currentHealth -= amount;
-                if (currentHealth < 0)
+                if (currentHealth <= 0)
                 {
-                    //Death
+                    StopAllCoroutines();
+                    GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().PlayerDied();
+                    
                 }
                 break;
             case 1:
                 currentFood -= amount;
                 if (currentFood < 0)
                 {
-                    //Death
+                    noFood = true;
+                }
+                else
+                {
+                    noFood = false;
                 }
                 break;
             case 2:
                 currentWater -= amount;
                 if (currentWater < 0)
                 {
-                    //Death
+                    noWater = true;
+                }
+                else
+                {
+                    noWater = false;
                 }
                 break;
         }
@@ -99,6 +117,14 @@ public class PlayerStatsManager : MonoBehaviour
     {
         switch (i)
         {
+            case 0:
+                if(noWater)
+                    RemoveValue(0, waterHealthImpact);
+                if(noFood)
+                    RemoveValue(0, foodHealthImpact);
+                UpdateSlider();
+                StartCoroutine(HealthDecrease());
+                break;
             case 1:
                 RemoveValue(i, foodDropRate);
                 UpdateSlider();
@@ -115,14 +141,20 @@ public class PlayerStatsManager : MonoBehaviour
 
     IEnumerator FoodDecrease()
     {
-        yield return new WaitForSecondsRealtime(foodDropInterval);
+        yield return new WaitForSeconds(foodDropInterval);
         DecreaseValue(1);
     }
     
     IEnumerator WaterDecrease()
     {
-        yield return new WaitForSecondsRealtime(waterDropInterval);
+        yield return new WaitForSeconds(waterDropInterval);
         DecreaseValue(2);
+    }
+    
+    IEnumerator HealthDecrease()
+    {
+        yield return new WaitForSeconds(healthDropRate);
+        DecreaseValue(0);
     }
 
 
@@ -132,4 +164,5 @@ public class PlayerStatsManager : MonoBehaviour
         foodSlider.value = currentFood;
         waterSlider.value = currentWater;
     }
+
 }

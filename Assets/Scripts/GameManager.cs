@@ -31,4 +31,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+
+    public void PlayerDied()
+    {
+        Time.timeScale = 0;
+        SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+    }
 }

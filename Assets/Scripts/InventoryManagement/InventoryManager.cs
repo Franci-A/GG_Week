@@ -14,11 +14,14 @@ public class InventoryManager : MonoBehaviour
     private Interactables interactableObject;
     private bool interactableOpen;
     private PlayerStatsManager statsManager;
+    private Tir playerTir;
+    
 
     void Start()
     {
         inventory = new List<Items>();
         statsManager = this.GetComponent<PlayerStatsManager>();
+        playerTir = this.GetComponent<Tir>();
     }
 
     void Update()
@@ -55,8 +58,18 @@ public class InventoryManager : MonoBehaviour
         {
             if (inventory.Count < invSize && interactableObject.posInv < interactableObject.items.Count)
             {
-                inventory.Add(interactableObject.items[interactableObject.posInv]);
-                interactableObject.RemoveItem(interactableObject.posInv);
+                if (interactableObject.items[interactableObject.posInv].type != ItemType.Bullets) {
+                    inventory.Add(interactableObject.items[interactableObject.posInv]);
+                    interactableObject.RemoveItem(interactableObject.posInv);
+                }
+                else if (playerTir.CurrentBullet < playerTir.MaxBullet)
+                {
+                    playerTir.CurrentBullet += interactableObject.items[interactableObject.posInv].amount;
+                    if (playerTir.CurrentBullet > playerTir.MaxBullet)
+                        playerTir.CurrentBullet = playerTir.MaxBullet;
+                    interactableObject.RemoveItem(interactableObject.posInv);
+                    playerTir.UpdateBullet();
+                }
             }
         }
         else if (Input.GetKeyDown(KeyCode.I) && interactableInRange)
@@ -97,7 +110,6 @@ public class InventoryManager : MonoBehaviour
                 Debug.Log("Glu glu");
                 break;
             case ItemType.Bullets:
-                inventory.RemoveAt(i);
                 Debug.Log("pew pew");
                 break;
             default:
@@ -125,7 +137,6 @@ public class InventoryManager : MonoBehaviour
         {
             interactableInRange = false;
             interactableObject = null;
-            Debug.Log(interactableInRange);
         }
     }
 }

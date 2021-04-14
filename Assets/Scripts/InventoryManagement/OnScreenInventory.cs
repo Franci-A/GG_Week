@@ -37,7 +37,7 @@ public class OnScreenInventory : MonoBehaviour
             posInv--;
             if (posInv < 0)
             {
-                posInv = inventorySlots.Length;
+                posInv = inventorySlots.Length -1;
             }
             UpdateSelected();
         }

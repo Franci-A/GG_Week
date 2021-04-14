@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Tir : MonoBehaviour
 {
-    [SerializeField] float MaxBullet;
-    public static float CurrentBullet;
+    public float MaxBullet;
+    public float CurrentBullet;
     public GameObject bullet;
     private GameObject bulletClone;
     public Transform muzzle;
@@ -53,7 +53,7 @@ public class Tir : MonoBehaviour
     {
         for (int i = 0; i < UIBulletContainer.transform.childCount; i++)
         {
-            Debug.Log(i);
+           // Debug.Log(i);
             if (i >= CurrentBullet)
             {
                 UIBulletContainer.transform.GetChild(i).gameObject.SetActive(false);

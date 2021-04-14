@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactable
   - Chest
+  - GameManager
   layers:
   - Default
   - TransparentFX

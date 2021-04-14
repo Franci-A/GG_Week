@@ -62,7 +62,7 @@ public class Interactables : MonoBehaviour
     {
         for (int i = 0; i < 2; i++)
         {
-            if (i > items.Count)
+            if (i >= items.Count)
             {
                 inventorySlots[i].GetComponent<Image>().sprite = itemAssets.GetSprite("Consumables", "Empty");
             }
