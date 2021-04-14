@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class movement : MonoBehaviour
 {
-    public float speed;
+    public float Maxspeed;
+    public float Currentspeed;
     private SpriteRenderer sR;
     public bool parallaxMove;
+    public GameObject FlecheBoussole;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,12 +19,13 @@ public class movement : MonoBehaviour
     void Update()
     {
         // MOUVEMENTS
-
-        if ((Input.GetAxis("Horizontal") > 0 && this.transform.position.x < 0) || Input.GetAxis("Horizontal") < 0)
+        Currentspeed = Maxspeed * Mathf.Cos(FlecheBoussole.GetComponent<Boussole>().currentRotation.eulerAngles.z * Mathf.PI / -180);
+        transform.Translate(new Vector2(Currentspeed * Time.deltaTime, 0));
+        if ((Currentspeed > 0 && this.transform.position.x < 0) || Input.GetAxis("Horizontal") < 0)
         {
             parallaxMove = false;
-            transform.Translate(new Vector2(Input.GetAxis("Horizontal"), 0) * speed * Time.deltaTime);
-        } else if(Input.GetAxis("Horizontal") > 0 && this.transform.position.x >= 0)
+            
+        } else if(Currentspeed > 0 && this.transform.position.x >= 0)
         {
             parallaxMove = true;
         }
@@ -31,11 +34,11 @@ public class movement : MonoBehaviour
             parallaxMove = false;
         }
 
-        if (Input.GetAxis("Horizontal") < 0)
+        if (Currentspeed < 0)
         {
             sR.flipX = true;
         }
-        else if(Input.GetAxis("Horizontal") > 0)
+        else if(Currentspeed > 0)
         {
             sR.flipX = false;
         }
