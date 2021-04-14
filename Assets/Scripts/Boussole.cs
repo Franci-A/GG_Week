@@ -34,6 +34,6 @@ public class Boussole : MonoBehaviour
             //apply the Quaternion.eulerAngles change to the gameObject
             transform.rotation = currentRotation;
         }
-        Debug.Log(Mathf.Cos(currentRotation.eulerAngles.z * Mathf.PI / -180));
+       // Debug.Log(Mathf.Cos(currentRotation.eulerAngles.z * Mathf.PI / -180));
     }
 }

@@ -29,8 +29,9 @@ public class Parallax : MonoBehaviour
         {
             foreach (Layer item in layers)
             {
-                item.image.transform.Translate(new Vector2(Input.GetAxis("Horizontal") *-1, 0) * item.speed * Time.deltaTime);
-                item.imageLoop.transform.Translate(new Vector2(Input.GetAxis("Horizontal") *-1, 0) * item.speed * Time.deltaTime);
+                float speed = player.GetComponent<movement>().Currentspeed / player.GetComponent<movement>().Maxspeed;
+                item.image.transform.Translate(new Vector2(speed * -1, 0) * item.speed * Time.deltaTime);
+                item.imageLoop.transform.Translate(new Vector2(speed *-1, 0) * item.speed * Time.deltaTime);
                 if(item.image.transform.position.x < item.endPosition)
                 {
                     item.image.transform.position = new Vector3(item.startPosition, item.image.transform.position.y, item.image.transform.position.z);
