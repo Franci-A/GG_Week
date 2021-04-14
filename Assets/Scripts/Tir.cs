@@ -58,6 +58,10 @@ public class Tir : MonoBehaviour
             {
                 UIBulletContainer.transform.GetChild(i).gameObject.SetActive(false);
             }
+            else
+            {
+                UIBulletContainer.transform.GetChild(i).gameObject.SetActive(true);
+            }
         }
     }
 }
