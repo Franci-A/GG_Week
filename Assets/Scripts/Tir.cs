@@ -43,6 +43,7 @@ public class Tir : MonoBehaviour
                 bulletClone.GetComponent<Rigidbody2D>().velocity = new Vector2(bulletSpeed, 0);
             }
             Destroy(bulletClone, 1.0f);
+            cooldown = reloadTime;
         }
         else
         {
