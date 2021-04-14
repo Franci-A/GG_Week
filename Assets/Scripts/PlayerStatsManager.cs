@@ -10,7 +10,7 @@ public class PlayerStatsManager : MonoBehaviour
     [Header("Health")]
     [SerializeField] private Slider healthSlider;
     public int currentHealth;
-    [SerializeField] private int healthDropRate;
+    [SerializeField] private int healthDropInterval;
     [SerializeField] private int foodHealthImpact;
     [SerializeField] private int waterHealthImpact;
 
@@ -153,7 +153,7 @@ public class PlayerStatsManager : MonoBehaviour
     
     IEnumerator HealthDecrease()
     {
-        yield return new WaitForSeconds(healthDropRate);
+        yield return new WaitForSeconds(healthDropInterval);
         DecreaseValue(0);
     }
 
