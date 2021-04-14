@@ -16,10 +16,12 @@ public class GameManager : MonoBehaviour
             if (IsPaused)
             {
                 Time.timeScale = 0;
+                SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
             }
             else
             {
                 Time.timeScale = 1;
+                SceneManager.UnloadSceneAsync("PauseMenu");
             }
 
 
