@@ -16,15 +16,33 @@ public class Parallax : MonoBehaviour
 {
     private Transform player;
     [SerializeField] private List<Layer> layers;
+    [SerializeField] private bool isMainMenu;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        if(!isMainMenu)
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     private void Update()
     {
-        if (player.GetComponent<movement>().parallaxMove)
+        if (isMainMenu)
+        {
+            foreach (Layer item in layers)
+            {
+                foreach (GameObject image in item.image)
+                {
+
+                    image.transform.Translate(new Vector2(2 * -1, 0) * item.speed * Time.deltaTime);
+                    if (image.transform.position.x < item.endPosition)
+                    {
+                        image.transform.position = new Vector3(item.startPosition, image.transform.position.y, image.transform.position.z);
+                    }
+
+                }
+            }
+        }
+        else if (player.GetComponent<movement>().parallaxMove)
         {
             foreach (Layer item in layers)
             {

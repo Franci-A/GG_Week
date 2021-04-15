@@ -28,11 +28,14 @@ public class PlayerStatsManager : MonoBehaviour
 
     private bool noWater;
     private bool noFood;
+    private AudioSource myAudio;
+    [SerializeField] private List<AudioClip> sounds;
 
 
 
     private void Start()
     {
+        myAudio = GetComponent<AudioSource>();
         currentHealth = maxValue;
         currentFood = maxValue;
         currentWater = maxValue;
@@ -49,6 +52,7 @@ public class PlayerStatsManager : MonoBehaviour
         switch (HFW)
         {
             case 0:
+                
                 currentHealth += amount;
                 if (currentHealth > maxValue)
                     currentHealth = maxValue;
@@ -64,6 +68,8 @@ public class PlayerStatsManager : MonoBehaviour
                     currentWater = maxValue;
                 break;
         }
+        myAudio.clip = sounds[HFW];
+        myAudio.Play();
         UpdateSlider();
     }
 

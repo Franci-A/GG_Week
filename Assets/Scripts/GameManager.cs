@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     private bool IsPaused = false;
     private bool GameOver = false;
+    private string currentLevel;
 
 
     void Update()
@@ -49,6 +50,38 @@ public class GameManager : MonoBehaviour
             IsPaused = false;
             Time.timeScale = 1;
             SceneManager.UnloadSceneAsync("Pause");
+        }
+    }
+
+    public void ChangeScenes(int i, bool randomInt = false)
+    {
+        if (randomInt)
+        {
+            i = Random.Range(0, 5);
+        }
+        SceneManager.UnloadSceneAsync(currentLevel);
+        switch (i)
+        {
+            case 0:
+                SceneManager.LoadScene("Desert1", LoadSceneMode.Additive);
+                currentLevel = "Desert1";
+                break;
+            case 1:
+                SceneManager.LoadScene("Desert1", LoadSceneMode.Additive);
+                currentLevel = "Desert1";
+                break;
+            case 2:
+                SceneManager.LoadScene("Desert1", LoadSceneMode.Additive);
+                currentLevel = "Desert1";
+                break;
+            case 3:
+                SceneManager.LoadScene("Desert1", LoadSceneMode.Additive);
+                currentLevel = "Desert1";
+                break;
+            case 4:
+                SceneManager.LoadScene("Desert1", LoadSceneMode.Additive);
+                currentLevel = "Desert1";
+                break;
         }
     }
 }
