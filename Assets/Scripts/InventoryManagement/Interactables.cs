@@ -19,7 +19,6 @@ public class Interactables : MonoBehaviour
     {
         UpdateSelected();
         stockedItems = items;
-        Debug.Log(stockedItems);
     }
 
     public void RemoveItem(int i)

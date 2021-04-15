@@ -17,4 +17,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Pause.unity
     guid: 74956265e04517a44b11b9b41862fb53
+  - enabled: 1
+    path: Assets/Scenes/Desert1.unity
+    guid: a11fc2b2cbfede747bd05baff026df92
+  - enabled: 1
+    path: Assets/Scenes/Desert2.unity
+    guid: 955919353883a6b40aed3d2082ee3479
+  - enabled: 1
+    path: Assets/Scenes/DesertCity1.unity
+    guid: 37aa6ac18ce2eba498e1a91d85ce5930
+  - enabled: 1
+    path: Assets/Scenes/DesertCity2.unity
+    guid: 25e0363f87b349a4881194c7a93f18ad
+  - enabled: 1
+    path: Assets/Scenes/SuperMarcher.unity
+    guid: 33343caf68206644ebab975993268a3a
   m_configObjects: {}

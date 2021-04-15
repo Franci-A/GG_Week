@@ -10,6 +10,8 @@ public class Score : MonoBehaviour
     [SerializeField] private float distanceMultiplier;
     private movement player;
     [SerializeField] private TextMeshProUGUI scoreUI;
+    [SerializeField] private int ChangeScenesScore;
+    private int multiplier = 1;
 
     private void Start()
     {
@@ -24,6 +26,12 @@ public class Score : MonoBehaviour
         {
             currentScore += (player.Currentspeed / player.Maxspeed) * distanceMultiplier;
             scoreUI.text = "" + (int)currentScore;
+        }
+
+        if(currentScore > ChangeScenesScore * multiplier)
+        {
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().ChangeScenes(0, true);
+            multiplier++;
         }
     }
 }

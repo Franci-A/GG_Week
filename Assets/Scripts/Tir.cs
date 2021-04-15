@@ -15,6 +15,8 @@ public class Tir : MonoBehaviour
     private SpriteRenderer sR;
     public GameObject UIBulletContainer;
     [SerializeField] private AudioClip fire;
+    [SerializeField] private Animator playerAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,7 @@ public class Tir : MonoBehaviour
             bulletClone = Instantiate(bullet, muzzle.position, Quaternion.identity);
             GetComponent<AudioSource>().clip = fire;
             GetComponent<AudioSource>().Play();
+            playerAnimator.SetTrigger("Fire");
             if (sR.flipX)
             {
                 bulletClone.GetComponent<SpriteRenderer>().flipX = true;
