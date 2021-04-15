@@ -13,6 +13,7 @@ public class EnnemyAgro : MonoBehaviour
     [SerializeField] float agroRangeOut;
     [SerializeField] float moveSpeed;
     Rigidbody2D rb;
+    public bool chase = false;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -27,13 +28,18 @@ public class EnnemyAgro : MonoBehaviour
         {
 
             float disToPLayer = Vector2.Distance(transform.position, player.position);
-            if (disToPLayer < agroRangeIn)
+            if (disToPLayer < agroRangeIn && player.GetComponent<movement>().Currentspeed > 3.0f)
+            {
+                chase = true;
+            }
+            if (chase)
             {
                 ChasePlayer();
             }
             if(disToPLayer > agroRangeOut)
             {
                 StopChasingPlayer();
+                chase = false;
             }
 
         }
