@@ -6,7 +6,7 @@ public class EnnemyAgro : MonoBehaviour
 {
     public int vie = 4;
     float direction = 1;
-    SpriteRenderer skin;
+    //SpriteRenderer skin;
     [SerializeField] Animator animatotor;
     Transform player;
     [SerializeField] float agroRangeIn;
@@ -19,7 +19,7 @@ public class EnnemyAgro : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
         //animatotor = GetComponent<Animator>();
-        skin = GetComponent<SpriteRenderer>();
+        //skin = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
@@ -55,7 +55,7 @@ public class EnnemyAgro : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            skin.color = new Color(1, 0, 0, 1);
+            //skin.color = new Color(1, 0, 0, 1);
             Debug.Log("touché");
             vie -= 1;
             StartCoroutine("attendre");
@@ -95,6 +95,6 @@ public class EnnemyAgro : MonoBehaviour
     IEnumerator attendre()
     {
         yield return new WaitForSeconds(0.05f);
-        skin.color = new Color(1, 1, 1, 1);
+        //skin.color = new Color(1, 1, 1, 1);
     }
 }
