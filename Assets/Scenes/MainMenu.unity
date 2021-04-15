@@ -2681,7 +2681,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.45
+  m_fontSize: 48.55
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3819,7 +3819,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.55
+  m_fontSize: 49.65
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5291,6 +5291,7 @@ GameObject:
   - component: {fileID: 2065732805}
   - component: {fileID: 2065732804}
   - component: {fileID: 2065732806}
+  - component: {fileID: 2065732807}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5310,6 +5311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3ff2d11fb984024ca16f0886882f62b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myAnimation: {fileID: 2065732807}
+  isMainMenu: 1
 --- !u!4 &2065732805
 Transform:
   m_ObjectHideFlags: 0
@@ -5340,6 +5343,25 @@ MonoBehaviour:
   Sound: {fileID: 1649113554}
   musicMixer: {fileID: 24100000, guid: 11144b87a2654034ca49a2e1d4ce7de0, type: 2}
   soundMixer: {fileID: 24100000, guid: 383cedbf29f4ea84a9aed5bedcc983ea, type: 2}
+--- !u!95 &2065732807
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065732803}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0f95661d8cf464b48a44ac9a9540e3cd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2075053443
 GameObject:
   m_ObjectHideFlags: 0
@@ -5585,7 +5607,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.4
+  m_fontSize: 48.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

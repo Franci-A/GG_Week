@@ -10,10 +10,12 @@ public class GameManager : MonoBehaviour
     private string currentLevel;
     private string lastLevel;
     [SerializeField] private Animator myAnimation;
+    [SerializeField] private bool isMainMenu;
 
     private void Start()
     {
-        ChangeScenes(0);
+        if(!isMainMenu)
+            ChangeScenes(0);
     }
 
     void Update()

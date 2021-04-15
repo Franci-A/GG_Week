@@ -7,7 +7,7 @@ public class EnnemyAgro : MonoBehaviour
     public int vie = 4;
     float direction = 1;
     SpriteRenderer skin;
-    Animator animatotor;
+    [SerializeField] Animator animatotor;
     Transform player;
     [SerializeField] float agroRangeIn;
     [SerializeField] float agroRangeOut;
@@ -17,7 +17,7 @@ public class EnnemyAgro : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
-        animatotor = GetComponent<Animator>();
+        //animatotor = GetComponent<Animator>();
         skin = GetComponent<SpriteRenderer>();
     }
     void Update()
