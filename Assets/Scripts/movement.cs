@@ -23,9 +23,9 @@ public class movement : MonoBehaviour
         Currentspeed = Maxspeed * Mathf.Cos(FlecheBoussole.GetComponent<Boussole>().currentRotation.eulerAngles.z * Mathf.PI / -180);
 
         if(Currentspeed > -.3  && Currentspeed < .3)
-            playerAnimator.SetBool("IsWalking", false);
+            playerAnimator.SetTrigger("Idle");
         else
-            playerAnimator.SetBool("IsWalking", true);
+            playerAnimator.SetTrigger("Walking");
 
         if ((Currentspeed > 0 && this.transform.position.x < 0) || Currentspeed < 0)
         {
