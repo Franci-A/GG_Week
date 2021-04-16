@@ -10,46 +10,52 @@ public class movement : MonoBehaviour
     public bool parallaxMove;
     public GameObject FlecheBoussole;
     [SerializeField] private Animator playerAnimator;
+    public InventoryManager inventoryManager;
     // Start is called before the first frame update
     void Start()
     {
         sR = GetComponent<SpriteRenderer>();
+        inventoryManager = GetComponent<InventoryManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // MOUVEMENTS
-        Currentspeed = Maxspeed * Mathf.Cos(FlecheBoussole.GetComponent<Boussole>().currentRotation.eulerAngles.z * Mathf.PI / -180);
+        if (!inventoryManager.isInventoryOpen && !inventoryManager.interactableOpen)
+        {
+            // MOUVEMENTS
+            Currentspeed = Maxspeed * Mathf.Cos(FlecheBoussole.GetComponent<Boussole>().currentRotation.eulerAngles.z * Mathf.PI / -180);
 
-        if(Currentspeed > -.3  && Currentspeed < .3)
-            playerAnimator.SetTrigger("Idle");
-        else
-            playerAnimator.SetTrigger("Walking");
+            if (Currentspeed > -.3 && Currentspeed < .3)
+                playerAnimator.SetTrigger("Idle");
+            else
+                playerAnimator.SetTrigger("Walking");
 
-        if ((Currentspeed > 0 && this.transform.position.x < 0) || Currentspeed < 0)
-        {
-            transform.Translate(new Vector2(Currentspeed * Time.deltaTime, 0));
-            parallaxMove = false;
-            
-        } else if(Currentspeed > 0 && this.transform.position.x >= 0)
-        {
-            parallaxMove = true;
+            if ((Currentspeed > 0 && this.transform.position.x < 0) || Currentspeed < 0)
+            {
+                transform.Translate(new Vector2(Currentspeed * Time.deltaTime, 0));
+                parallaxMove = false;
 
-        }
-        else
-        {
-            transform.Translate(new Vector2(Currentspeed * Time.deltaTime, 0));
-            parallaxMove = false;
-        }
+            }
+            else if (Currentspeed > 0 && this.transform.position.x >= 0)
+            {
+                parallaxMove = true;
 
-        if (Currentspeed < 0)
-        {
-            sR.flipX = true;
-        }
-        else if(Currentspeed > 0)
-        {
-            sR.flipX = false;
+            }
+            else
+            {
+                transform.Translate(new Vector2(Currentspeed * Time.deltaTime, 0));
+                parallaxMove = false;
+            }
+
+            if (Currentspeed < 0)
+            {
+                sR.flipX = true;
+            }
+            else if (Currentspeed > 0)
+            {
+                sR.flipX = false;
+            }
         }
 
     }

@@ -14,7 +14,7 @@ public class Boussole : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             currentEulerAngles += new Vector3(0, 0, 10);
 
@@ -24,7 +24,7 @@ public class Boussole : MonoBehaviour
             //apply the Quaternion.eulerAngles change to the gameObject
             transform.rotation = currentRotation;
         }
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             currentEulerAngles -= new Vector3(0, 0, 10);
 

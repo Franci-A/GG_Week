@@ -12,7 +12,6 @@ public class Interactables : MonoBehaviour
     public int posInv;
     private bool isUpdatingPos = false;
     public List<Items> items;
-    private List<Items> stockedItems;
 
 
     private void Start()

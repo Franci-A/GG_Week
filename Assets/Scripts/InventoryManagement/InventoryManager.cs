@@ -9,10 +9,10 @@ public class InventoryManager : MonoBehaviour
     public List<Items> inventory;
     [SerializeField] private int invSize;
     [SerializeField] private GameObject InvUI;
-    private bool isInventoryOpen;
+    public bool isInventoryOpen;
     private bool interactableInRange;
     private Interactables interactableObject;
-    private bool interactableOpen;
+    public bool interactableOpen;
     private PlayerStatsManager statsManager;
     private Tir playerTir;
     
@@ -26,13 +26,13 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && interactableOpen && interactableInRange)
+        if(Input.GetKeyDown(KeyCode.A) && interactableOpen && interactableInRange)
         {
             interactableOpen = false;
             interactableObject.CloseUI();
             
         }
-        else if (Input.GetKeyDown(KeyCode.E)) //Open / close inventory
+        else if (Input.GetKeyDown(KeyCode.A)) //Open / close inventory
         {
             if (!isInventoryOpen)
             {
@@ -49,12 +49,12 @@ public class InventoryManager : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.I) && isInventoryOpen)
+        if (Input.GetKeyDown(KeyCode.E) && isInventoryOpen)
         {
             if(inventory.Count > InvUI.GetComponent<OnScreenInventory>().posInv)
                 UseItem(InvUI.GetComponent<OnScreenInventory>().posInv);
         }
-        else if (Input.GetKeyDown(KeyCode.I) && interactableOpen)
+        else if (Input.GetKeyDown(KeyCode.E) && interactableOpen)
         {
             if (inventory.Count < invSize && interactableObject.posInv < interactableObject.items.Count)
             {
@@ -72,7 +72,7 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.I) && interactableInRange)
+        else if (Input.GetKeyDown(KeyCode.E) && interactableInRange)
         {
             interactableObject.OpenUI();
             interactableObject.UpdateUI();
