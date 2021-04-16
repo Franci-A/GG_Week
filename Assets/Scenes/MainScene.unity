@@ -784,6 +784,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1456798216}
     - target: {fileID: 8605763962859125943, guid: 706437c4b4200db43ba2d88a91bcad93, type: 3}
+      propertyPath: foodDropRate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605763962859125943, guid: 706437c4b4200db43ba2d88a91bcad93, type: 3}
+      propertyPath: waterDropRate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605763962859125943, guid: 706437c4b4200db43ba2d88a91bcad93, type: 3}
       propertyPath: foodHealthImpact
       value: 5
       objectReference: {fileID: 0}
