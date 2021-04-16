@@ -6,6 +6,10 @@ public class EnnemyAgro : MonoBehaviour
 {
     public int vie = 4;
     float direction = 1;
+    public int degats = 10;
+    private float lastdamage;
+    public float delaybtwdamage = 0.5f;
+    private float cooldown = 0.5f;
     //SpriteRenderer skin;
     [SerializeField] Animator animatotor;
     Transform player;
@@ -23,6 +27,10 @@ public class EnnemyAgro : MonoBehaviour
     }
     void Update()
     {
+        if (lastdamage < delaybtwdamage)
+        {
+            lastdamage += Time.deltaTime;
+        }
 
         if (vie > 0)
         {
@@ -61,6 +69,16 @@ public class EnnemyAgro : MonoBehaviour
             StartCoroutine("attendre");
         }
        
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player" &&  lastdamage > delaybtwdamage)
+        {
+            Debug.Log("attaque!");
+            player.GetComponent<PlayerStatsManager>().RemoveValue(0, degats);
+            animatotor.SetTrigger("attack");
+            lastdamage = 0;
+        }
     }
     void ChasePlayer()
     {
