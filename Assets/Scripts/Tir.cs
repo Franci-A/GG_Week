@@ -38,7 +38,7 @@ public class Tir : MonoBehaviour
             GetComponent<AudioSource>().clip = fire;
             GetComponent<AudioSource>().Play();
             playerAnimator.SetTrigger("Fire");
-            if (sR.flipX)
+            if (transform.localScale.x<0)
             {
                 bulletClone.GetComponent<SpriteRenderer>().flipX = true;
                 bulletClone.GetComponent<Rigidbody2D>().velocity = new Vector2(-bulletSpeed, 0);
