@@ -18,7 +18,7 @@ public class Interactables : MonoBehaviour
     private void Start()
     {
         UpdateSelected();
-        stockedItems = items;
+        SetItems();
     }
 
     public void RemoveItem(int i)
@@ -98,11 +98,31 @@ public class Interactables : MonoBehaviour
         UI.SetActive(false);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("EndZone")){
-            items.Add(stockedItems[0]);
-            items.Add(stockedItems[1]);
+            SetItems();
+        }
+    }
+
+    private void SetItems()
+    {
+        items.Clear();
+        for (int i = 0; i < 2; i++)
+        {
+            int j = Random.Range(0, 4);
+            int k = 0;
+            if(j < 2)
+            {
+                k = 10;
+            }else if(j == 2)
+            {
+                k = 15;
+            }else
+            {
+                k = 4;
+            }
+            items.Add(new Items((ItemType)j, k));
         }
     }
 }

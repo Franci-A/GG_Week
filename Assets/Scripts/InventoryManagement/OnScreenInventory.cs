@@ -71,11 +71,11 @@ public class OnScreenInventory : MonoBehaviour
         {
             if(posInv == i)
             {
-                inventorySlots[i].GetComponent<Outline>().effectDistance = new Vector2(3, -3);
+                inventorySlots[i].GetComponent<Outline>().effectColor = Color.red;
             }
             else
             {
-                inventorySlots[i].GetComponent<Outline>().effectDistance = new Vector2(0, 0);
+                inventorySlots[i].GetComponent<Outline>().effectColor = Color.clear;
 
             }
         }
