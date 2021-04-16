@@ -67,19 +67,25 @@ public class EnnemyAgro : MonoBehaviour
         if (transform.position.x < player.position.x - 1)
         {
             rb.velocity = new Vector2(moveSpeed, 0);
-            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
-            animatotor.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            //animatotor.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
         }
         else if (transform.position.x > player.position.x + 1)
         {
             rb.velocity = new Vector2(-moveSpeed, 0);
-            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-            animatotor.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            //animatotor.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
         }
         else
         {
+            transform.localScale = transform.localScale;
             rb.velocity = new Vector2(0, 0);
-            animatotor.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
+            /*if(transform.position.x == player.position.x - 1)
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }*/
+            
+            //animatotor.SetFloat("velocityX", Mathf.Abs(rb.velocity.x));
         }
 
     }
