@@ -30,7 +30,7 @@ public class Tir : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(cooldown <= 0 && Input.GetButtonDown("Fire1") && CurrentBullet > 0)
+        if(cooldown <= 0 && Input.GetButtonDown("Fire1") && CurrentBullet > 0 && Time.timeScale != 0)
         {
             CurrentBullet--;
             UpdateBullet();
@@ -51,7 +51,7 @@ public class Tir : MonoBehaviour
             Destroy(bulletClone, 1.0f);
             cooldown = reloadTime;
         }
-        else
+        else if(Time.timeScale != 0)
         {
             cooldown -= Time.deltaTime;
         }
